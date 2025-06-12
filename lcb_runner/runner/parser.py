@@ -47,6 +47,12 @@ def get_args():
         help="whether to use CoT in code execution scenario",
     )
     parser.add_argument(
+        "--dataset_path",
+        type=str,
+        default=None,
+        help="Optional local dataset directory or Hugging Face identifier",
+    )
+    parser.add_argument(
         "--n", type=int, default=10, help="Number of samples to generate"
     )
     parser.add_argument(
