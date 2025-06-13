@@ -28,6 +28,7 @@ class LMStyle(Enum):
     CodeLLaMaInstruct = "CodeLLaMaInstruct"
     StarCoderInstruct = "StarCoderInstruct"
     CodeQwenInstruct = "CodeQwenInstruct"
+    MistralInstruct = "MistralInstruct"
     QwQ = "QwQ"
     LLaMa3 = "LLaMa3"
     DeepSeekR1 = "DeepSeekR1"
@@ -224,9 +225,17 @@ LanguageModelList: list[LanguageModel] = [
     LanguageModel(
         "deepseek-coder",
         "DeepSeekCoder-V2.5",
-        LMStyle.DeepSeekAPI,
+        LMStyle.DeepSeekCodeInstruct,
         datetime(2023, 8, 1),
         link="https://huggingface.co/deepseek-ai/DeepSeek-V2",
+    ),
+    ## guni
+    LanguageModel(
+        "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+        "DSCoder-V2-Lite-Instruct",
+        LMStyle.DeepSeekCodeInstruct,
+        datetime(2024, 7, 3),
+        link="https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
     ),
     ## OpenAI GPT-3.5-Turbo
     LanguageModel(
@@ -602,6 +611,13 @@ LanguageModelList: list[LanguageModel] = [
         "Codestral-Latest",
         LMStyle.MistralWeb,
         datetime(2023, 1, 1),
+        link="https://mistral.ai/news/codestral/",
+    ),
+    LanguageModel(
+        "mistralai/Mistral-7B-Instruct-v0.2",
+        "Mistral-7B-Instruct-v0.2",
+        LMStyle.MistralInstruct,
+        datetime(2024, 9, 27),
         link="https://mistral.ai/news/codestral/",
     ),
     ## QwQ

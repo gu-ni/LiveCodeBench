@@ -131,6 +131,18 @@ def get_args():
         default=None,
         help="End date for the contest to filter the evaluation file (format - YYYY-MM-DD)",
     )
+    ## guni
+    parser.add_argument(
+        "--max_model_len",
+        type=int,
+        default=None,
+    )
+    parser.add_argument(
+        "--custom_output_path",
+        type=str,
+        default=None,
+    )
+    
 
     args = parser.parse_args()
 
