@@ -5,7 +5,7 @@ from lcb_runner.runner.parser import get_args
 from lcb_runner.utils.scenarios import Scenario
 from lcb_runner.lm_styles import LanguageModelStore
 from lcb_runner.runner.runner_utils import build_runner
-from lcb_runner.utils.path_utils import get_output_path
+from lcb_runner.utils.path_utils import get_output_path, get_custom_output_path
 from lcb_runner.evaluation import extract_instance_results
 from lcb_runner.runner.scenario_router import (
     build_prompt_benchmark,
@@ -23,8 +23,12 @@ def main():
     if args.debug:
         print(f"Running with {len(benchmark)} instances in debug mode")
         benchmark = benchmark[:15]
-
-    output_path = get_output_path(model.model_repr, args)
+    
+    ## guni
+    if args.custom_output_path is None:
+        output_path = get_output_path(model.model_repr, args)
+    else:
+        output_path = get_custom_output_path(model.model_repr, args)
     eval_file = output_path.replace(".json", "_eval.json")
     eval_all_file = output_path.replace(".json", "_eval_all.json")
 
