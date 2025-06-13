@@ -56,7 +56,10 @@ class CodeGenerationProblem:
     def __post_init__(self):
         self.platform = Platform(self.platform)
         self.difficulty = Difficulty(self.difficulty)
-        self.contest_date = datetime.fromisoformat(self.contest_date)
+        if self.contest_date is not None and isinstance(self.contest_date, str):
+            self.contest_date = datetime.fromisoformat(self.contest_date)
+        else:
+            self.contest_date = datetime(2025, 1, 1)
 
         self.public_test_cases = json.loads(self.public_test_cases)  # type: ignore
         self.public_test_cases = [Test(**t) for t in self.public_test_cases]
@@ -128,15 +131,18 @@ def load_code_generation_dataset(
     dataset_path=None,
 ) -> list[CodeGenerationProblem]:
     if dataset_path is None:
-        dataset_name = "livecodebench/code_generation_lite"
+        dataset = load_dataset(
+            "livecodebench/code_generation_lite",
+            split="test",
+            version_tag=release_version,
+            trust_remote_code=True,
+        )
     else:
-        dataset_name = dataset_path
-    dataset = load_dataset(
-        dataset_name,
-        split="test",
-        version_tag=release_version,
-        trust_remote_code=True,
-    )
+        dataset = load_dataset(
+            "json",
+            data_files={"test": dataset_path},
+            split="test",
+        )
     dataset = [CodeGenerationProblem(**p) for p in dataset]  # type: ignore
     if start_date is not None:
         p_start_date = datetime.strptime(start_date, "%Y-%m-%d")
