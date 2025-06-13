@@ -59,8 +59,15 @@ class TestOutputPredictionProblem:
         }
 
 
-def load_test_prediction_dataset(release_version="release_v1") -> list[TestOutputPredictionProblem]:
-    dataset = load_dataset("livecodebench/test_generation", split="test")  # type: ignore
+def load_test_prediction_dataset(
+    release_version="release_v1",
+    dataset_path=None,
+) -> list[TestOutputPredictionProblem]:
+    if dataset_path is None:
+        dataset_name = "livecodebench/test_generation"
+    else:
+        dataset_name = dataset_path
+    dataset = load_dataset(dataset_name, split="test")  # type: ignore
     dataset = [TestOutputPredictionProblem(**d) for d in dataset]
     print(f"Loaded {len(dataset)} prediction problems")
     return dataset

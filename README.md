@@ -62,6 +62,13 @@ You can use the `--release_version` flag to specify the dataset version you wish
 python -m lcb_runner.runner.main --model {model_name} --scenario codegeneration --evaluate --release_version release_v2
 ```
 
+You can also load a dataset from a custom location using the `--dataset_path` flag which accepts a local directory or Hugging Face dataset identifier.
+For example,
+
+```bash
+python -m lcb_runner.runner.main --model {model_name} --scenario codegeneration --dataset_path path/to/custom_dataset
+```
+
 ### Code Generation
 
 We use `vllm` for inference using open models. By default, we use  `tensor_parallel_size=${num_gpus}` to parallelize inference across all available GPUs. It can be configured using the  `--tensor_parallel_size` flag as required. 
