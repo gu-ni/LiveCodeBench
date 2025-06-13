@@ -56,8 +56,15 @@ class CodeExecutionProblem:
         }
 
 
-def load_code_execution_dataset(release_version="release_v1") -> list[CodeExecutionProblem]:
-    dataset = load_dataset("livecodebench/execution-v2", split="test")
+def load_code_execution_dataset(
+    release_version="release_v1",
+    dataset_path=None,
+) -> list[CodeExecutionProblem]:
+    if dataset_path is None:
+        dataset_name = "livecodebench/execution-v2"
+    else:
+        dataset_name = dataset_path
+    dataset = load_dataset(dataset_name, split="test")
     dataset = [CodeExecutionProblem(**p) for p in dataset]  # type: ignore
     print(f"Loaded {len(dataset)} problems")
     return dataset
