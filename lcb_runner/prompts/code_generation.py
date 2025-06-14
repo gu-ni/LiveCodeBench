@@ -335,6 +335,26 @@ def format_prompt_generation(
         prompt += f"{get_deepseek_r1_question_template_answer(question)}"
         return prompt
 
+    if LanguageModelStyle == LMStyle.GemmaInstruct:
+        chat_messages = [
+            {
+                "role": "user",
+                "content": PromptConstants.SYSTEM_MESSAGE_GENERIC + "\n\n" + get_generic_question_template_answer(question),
+            },
+        ]
+        from transformers import AutoTokenizer
+
+        tokenizer = AutoTokenizer.from_pretrained(
+            "google/gemma-2-27b-it", padding_side="left", use_fast=False
+        )
+        return tokenizer.apply_chat_template(
+            chat_messages,
+            tokenize=False,
+            add_generation_prompt=True,
+            truncation=False,
+            padding=False,
+        )
+    
     if LanguageModelStyle == LMStyle.GenericBase:
         prompt = get_base_model_question_template_answer(question)
         return prompt

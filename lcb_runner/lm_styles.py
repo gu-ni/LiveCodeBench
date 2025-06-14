@@ -29,6 +29,7 @@ class LMStyle(Enum):
     StarCoderInstruct = "StarCoderInstruct"
     CodeQwenInstruct = "CodeQwenInstruct"
     MistralInstruct = "MistralInstruct"
+    GemmaInstruct = "GemmaInstruct"
     QwQ = "QwQ"
     LLaMa3 = "LLaMa3"
     DeepSeekR1 = "DeepSeekR1"
@@ -295,6 +296,20 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.OpenAIChat,
         datetime(2023, 4, 30),
         link="https://openai.com/index/spring-update",
+    ),
+    LanguageModel(
+        "gpt-4.1-2025-04-14",
+        "GPT-4.1-2025-04-14",
+        LMStyle.OpenAIChat,
+        datetime(2025, 4, 14),
+        link="https://openai.com/index/gpt-4-1",
+    ),
+    LanguageModel(
+        "gpt-4.1-mini-2025-04-14",
+        "GPT-4.1-mini-2025-04-14",
+        LMStyle.OpenAIChat,
+        datetime(2025, 4, 14),
+        link="https://openai.com/index/gpt-4-1",
     ),
     ## O1-Mini and O1-Preview
     LanguageModel(
@@ -582,6 +597,27 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.GenericBase,
         datetime(2023, 1, 1),
         link="https://huggingface.co/google/gemma-2b",
+    ),
+    LanguageModel(
+        "google/gemma-2-9b-it",
+        "Gemma-2-9b-Ins",
+        LMStyle.GemmaInstruct,
+        datetime(2024, 8, 28),
+        link="https://huggingface.co/google/gemma-2-9b-it",
+    ),
+    LanguageModel(
+        "google/gemma-2-27b-it",
+        "Gemma-2-27b-Ins",
+        LMStyle.GemmaInstruct,
+        datetime(2024, 8, 28),
+        link="https://huggingface.co/google/gemma-2-27b-it",
+    ),
+    LanguageModel(
+        "google/gemma-3-4b-it",
+        "Gemma-3-4b-Ins",
+        LMStyle.GemmaInstruct,
+        datetime(2025, 5, 22),
+        link="https://huggingface.co/google/gemma-3-4b-it",
     ),
     ## Mistral Web
     LanguageModel(
