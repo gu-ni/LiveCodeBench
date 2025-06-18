@@ -654,7 +654,7 @@ LanguageModelList: list[LanguageModel] = [
         "Mistral-7B-Instruct-v0.2",
         LMStyle.MistralInstruct,
         datetime(2024, 9, 27),
-        link="https://mistral.ai/news/codestral/",
+        link="https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2",
     ),
     ## QwQ
     LanguageModel(
