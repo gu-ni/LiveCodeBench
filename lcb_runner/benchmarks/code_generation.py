@@ -13,6 +13,7 @@ class Platform(Enum):
     LEETCODE = "leetcode"
     CODEFORCES = "codeforces"
     ATCODER = "atcoder"
+    HUMANEVAL = "HumanEval"
 
 
 class Difficulty(Enum):
@@ -65,7 +66,11 @@ class CodeGenerationProblem:
         self.public_test_cases = [Test(**t) for t in self.public_test_cases]
 
         try:
-            self.private_test_cases = json.loads(self.private_test_cases)  # type: ignore
+            if self.private_test_cases:
+                self.private_test_cases = json.loads(self.private_test_cases)
+            else:
+                self.private_test_cases = []
+            # self.private_test_cases = json.loads(self.private_test_cases)  # type: ignore
         except:
             self.private_test_cases = json.loads(
                 pickle.loads(
