@@ -148,6 +148,11 @@ def get_args():
         type=str,
         default=None,
     )
+    parser.add_argument(
+        "--gpu_memory_utilization",
+        type=float,
+        default=0.9,
+    )
     
 
     args = parser.parse_args()
