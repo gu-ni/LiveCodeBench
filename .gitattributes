@@ -1,5 +1,0 @@
-output_codeforces_gpt_content/AceReason-Nemotron-1.1-7B/Scenario.codegeneration_10_0.2.json filter=lfs diff=lfs merge=lfs -text
-output_codeforces_gpt_content/AceReason-Nemotron-1.1-7B/Scenario.codegeneration_10_0.2_eval_all.json filter=lfs diff=lfs merge=lfs -text
-output_codeforces_gpt_content_with_io/AceReason-Nemotron-1.1-7B/Scenario.codegeneration_10_0.2_eval_all.json filter=lfs diff=lfs merge=lfs -text
-output_codeforces/AceReason-Nemotron-1.1-7B/Scenario.codegeneration_10_0.2.json filter=lfs diff=lfs merge=lfs -text
-output_codeforces/AceReason-Nemotron-1.1-7B/Scenario.codegeneration_10_0.2_eval_all.json filter=lfs diff=lfs merge=lfs -text
