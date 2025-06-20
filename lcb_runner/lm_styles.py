@@ -22,6 +22,8 @@ class LMStyle(Enum):
     DataBricks = "DataBricks"
     DeepSeekAPI = "DeepSeekAPI"
 
+    Nvidia = "Nvidia"
+    
     GenericBase = "GenericBase"
 
     DeepSeekCodeInstruct = "DeepSeekCodeInstruct"
@@ -59,6 +61,14 @@ class LanguageModel:
 
 
 LanguageModelList: list[LanguageModel] = [
+    ## Nvidia
+    LanguageModel(
+        "nvidia/AceReason-Nemotron-1.1-7B",
+        "AceReason-Nemotron-1.1-7B",
+        LMStyle.Nvidia,
+        datetime(2025, 1, 1),
+        link="https://huggingface.co/nvidia/AceReason-Nemotron-1.1-7B",
+    ),
     ## LLama3 Base (8B and 70B)
     LanguageModel(
         "meta-llama/Meta-Llama-3-70B",

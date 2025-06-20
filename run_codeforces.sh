@@ -52,24 +52,23 @@
 #     --gpu_memory_utilization 0.95
 
 
-python -m lcb_runner.runner.main \
-    --model mistralai/Mistral-7B-Instruct-v0.2 \
-    --scenario codegeneration \
-    --evaluate \
-    --max_model_len 10000 \
-    --custom_output_path output_codeforces \
-    --dataset_path /home/work/users/PIL_ghj/LLM/datasets/codeforces/codeforces_in_lcb_format.jsonl \
-    --gpu_memory_utilization 0.95
+# python -m lcb_runner.runner.main \
+#     --model mistralai/Mistral-7B-Instruct-v0.2 \
+#     --scenario codegeneration \
+#     --evaluate \
+#     --max_model_len 10000 \
+#     --custom_output_path output_codeforces \
+#     --dataset_path /home/work/users/PIL_ghj/LLM/datasets/codeforces/codeforces_in_lcb_format.jsonl \
+#     --gpu_memory_utilization 0.95
 
 
 python -m lcb_runner.runner.main \
     --model nvidia/AceReason-Nemotron-1.1-7B \
     --scenario codegeneration \
     --evaluate \
-    --max_model_len 10000 \
     --custom_output_path output_codeforces \
     --dataset_path /home/work/users/PIL_ghj/LLM/datasets/codeforces/codeforces_in_lcb_format.jsonl \
-    --gpu_memory_utilization 0.95
+    --max_tokens 20000
 
 
 # python -m lcb_runner.runner.main \

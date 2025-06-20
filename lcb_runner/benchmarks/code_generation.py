@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 import zlib
 import pickle
 import base64
@@ -53,6 +54,7 @@ class CodeGenerationProblem:
     public_test_cases: list[Test]
     private_test_cases: list[Test]
     metadata: dict
+    genre: Optional[str] = None
 
     def __post_init__(self):
         self.platform = Platform(self.platform)

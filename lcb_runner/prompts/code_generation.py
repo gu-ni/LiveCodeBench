@@ -31,6 +31,8 @@ class PromptConstants:
         "The assistant first thinks about the reasoning process in the mind and then provides the user with the answer. "
         "The reasoning process and answer are enclosed within <think> </think> and <answer> </answer> tags, respectively, i.e., <think> reasoning process here </think> <answer> answer here </answer>.<|User|>"
     )
+    
+    SYSTEM_MESSAGE_NVIDIA = "<|im_start|>system\nYou are a helpful and harmless assistant. You should think step-by-step.<|im_end|>\n<|im_start|>user\n"
 
     FORMATTING_MESSAGE_WITH_STARTER_CODE = "You will use the following starter code to write the solution to the problem and enclose your code within delimiters."
 
@@ -163,6 +165,18 @@ def get_deepseek_r1_question_template_answer(question: CodeGenerationProblem):
         prompt += f"{PromptConstants.FORMATTING_WITHOUT_STARTER_CODE}\n"
         prompt += f"```python\n# YOUR CODE HERE\n```\n\n"
     prompt += f"<|Assistant|>"
+    return prompt
+
+def get_nvidia_question_template_answer(question: CodeGenerationProblem):
+    prompt = "CODE_QUESTION\n\nYou will be given a question (problem specification) and will generate a correct Python program that matches the specification and passes all tests.\n\n"
+    prompt += f"Question: {question.question_content}\n\n"
+    if question.starter_code:
+        prompt += f"{PromptConstants.FORMATTING_MESSAGE_WITH_STARTER_CODE}\n"
+        prompt += f"```python\n{question.starter_code}\n```\n\n"
+    else:
+        prompt += f"{PromptConstants.FORMATTING_WITHOUT_STARTER_CODE}\n"
+        prompt += f"```python\n# Your solution code here\n```\n\n"
+    prompt += f"<|im_end|>\n<|im_start|>assistant\n<think>\n"
     return prompt
 
 
@@ -338,6 +352,11 @@ def format_prompt_generation(
             truncation=False,
             padding=False,
         )
+    
+    if LanguageModelStyle == LMStyle.Nvidia:
+        prompt = f"{PromptConstants.SYSTEM_MESSAGE_NVIDIA}\n\n"
+        prompt += f"{get_nvidia_question_template_answer(question)}"
+        return prompt
 
     if LanguageModelStyle == LMStyle.DeepSeekCodeInstruct:
         prompt = f"{PromptConstants.SYSTEM_MESSAGE_DEEPSEEK}\n\n"
