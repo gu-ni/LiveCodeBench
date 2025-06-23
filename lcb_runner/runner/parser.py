@@ -153,6 +153,12 @@ def get_args():
         type=float,
         default=0.9,
     )
+    parser.add_argument(
+        "--tokenizer_mode",
+        type=str,
+        default="auto",
+    )
+    
     
 
     args = parser.parse_args()

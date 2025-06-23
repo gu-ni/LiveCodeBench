@@ -26,6 +26,7 @@ class VLLMRunner(BaseRunner):
                 enable_prefix_caching=args.enable_prefix_caching,
                 trust_remote_code=args.trust_remote_code,
                 gpu_memory_utilization=args.gpu_memory_utilization,
+                tokenizer_mode=args.tokenizer_mode,
             )
         else:
             self.llm = LLM(
@@ -39,6 +40,7 @@ class VLLMRunner(BaseRunner):
                 trust_remote_code=args.trust_remote_code,
                 max_model_len=args.max_model_len,
                 gpu_memory_utilization=args.gpu_memory_utilization,
+                tokenizer_mode=args.tokenizer_mode,
             )
         self.sampling_params = SamplingParams(
             n=self.args.n,

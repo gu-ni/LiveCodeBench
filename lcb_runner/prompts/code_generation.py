@@ -343,7 +343,7 @@ def format_prompt_generation(
         from transformers import AutoTokenizer
 
         tokenizer = AutoTokenizer.from_pretrained(
-            "mistralai/Mistral-7B-Instruct-v0.2", padding_side="left", use_fast=False
+            "mistralai/Mistral-7B-Instruct-v0.3", padding_side="left", use_fast=False
         )
         return tokenizer.apply_chat_template(
             chat_messages,
